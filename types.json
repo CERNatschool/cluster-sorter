@@ -1,0 +1,64 @@
+[
+    {
+    "Alpha": {
+        "size_min":    35,   "size_max":    90,
+        "rad_min" :     3.5, "rad_max" :     6.0,
+        "rho_min" :     0.9, "rho_max" :     1.1,
+        "lin_min" :     1.5, "lin_max" :     2.5
+        },
+    "DoubleAlpha": {
+        "size_min":      90, "size_max":   120,
+        "rad_min" :     3.5, "rad_max" :     9.0,
+        "rho_min" :     0.0, "rho_max" :     2.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "MidBeta": {
+        "size_min":     5,   "size_max":     34,
+        "rad_min" :     0.0, "rad_max" : 65536.0,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "Large": {
+        "size_min":    35,   "size_max": 65536,
+        "rad_min" :    10.0, "rad_max" : 65536.0,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "Monopixel": {
+        "size_min":     1,   "size_max": 1,
+        "rad_min" :     0.0, "rad_max" : 65536.0,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "Bipixel": {
+        "size_min":     2,   "size_max": 2,
+        "rad_min" :     0.0, "rad_max" : 65536.0,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        }, 
+    "TripixelGamma": {
+        "size_min":     3,   "size_max": 3,
+        "rad_min" :     0.0, "rad_max" :     0.75,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "TetrapixelGamma": {
+        "size_min":     4,   "size_max": 4,
+        "rad_min" :     0.0, "rad_max" :     0.71,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0
+        },
+    "TripixelBeta": {
+        "size_min":     3,    "size_max": 3,
+        "rad_min" :     0.75, "rad_max" : 65536.0,
+        "rho_min" :     0.0,  "rho_max" : 65536.0,
+        "lin_min" :     0.0,  "lin_max" : 65536.0
+        },
+    "TetrapixelBeta": {
+        "size_min":     4,    "size_max": 4,
+        "rad_min" :     0.71, "rad_max" : 65536.0,
+        "rho_min" :     0.0,  "rho_max" : 65536.0,
+        "lin_min" :     0.0,  "lin_max" : 65536.0
+        } 
+    }
+]
