@@ -1,64 +1,139 @@
 [
     {
+    "SmallAlpha": {
+        "size_min":    11,    "size_max":     24,
+        "rad_min" :     1.0,  "rad_max" :     2.85,
+        "rho_min" :     0.84, "rho_max" : 65536.0,
+        "lin_min" :     0.74, "lin_max" : 65536.0,
+        "inr_min" :     0.0, "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        },
     "Alpha": {
-        "size_min":    35,   "size_max":    90,
-        "rad_min" :     3.5, "rad_max" :     6.0,
-        "rho_min" :     0.9, "rho_max" :     1.1,
-        "lin_min" :     1.5, "lin_max" :     2.5
+        "size_min":    25,    "size_max":    90,
+        "rad_min" :     2.5, "rad_max" :     6.0,
+        "rho_min" :     0.75, "rho_max" :     1.5,
+        "lin_min" :     1.05, "lin_max" :     2.5,
+        "inr_min" :     0.25,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "DoubleAlpha": {
         "size_min":      90, "size_max":   120,
         "rad_min" :     3.5, "rad_max" :     9.0,
         "rho_min" :     0.0, "rho_max" :     2.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        },
+    "SmallBeta": {
+        "size_min":     5,   "size_max":      10,
+        "rad_min" :     0.0, "rad_max" :      3.6,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     0.2,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "MidBeta": {
-        "size_min":     5,   "size_max":     34,
-        "rad_min" :     0.0, "rad_max" : 65536.0,
-        "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "size_min":     11,   "size_max":     49,
+        "rad_min" :     3.0,  "rad_max" :      9.99,
+        "rho_min" :     0.0,  "rho_max" :     0.35,
+        "lin_min" :     0.0,  "lin_max" :     0.9,
+        "inr_min" :     0.0,  "inr_max" :     0.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
-    "Large": {
-        "size_min":    35,   "size_max": 65536,
+    "BlobbyBeta": {
+        "size_min":     11,   "size_max":    49,
+        "rad_min" :     0.0, "rad_max" :     4.2,
+        "rho_min" :     0.35, "rho_max" :      1.01,
+        "lin_min" :     0.0, "lin_max" :      0.9,
+        "inr_min" :     0.00,  "inr_max" :     0.25,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        },
+    "CurlyBeta": {
+        "size_min":     11,  "size_max":    49,
+        "rad_min" :     0.0, "rad_max" :    20.0,
+        "rho_min" :     0.0, "rho_max" :     0.75,
+        "lin_min" :     0.9, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     0.00,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        },
+    "LargeBeta": {
+        "size_min":    50,   "size_max": 65536,
         "rad_min" :    10.0, "rad_max" : 65536.0,
         "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        },
+    "BlobWithTail": {
+        "size_min":     11,  "size_max":    49,
+        "rad_min" :     0.0, "rad_max" :    20.0,
+        "rho_min" :     0.0, "rho_max" :     0.75,
+        "lin_min" :     0.9, "lin_max" : 65536.0,
+        "inr_min" :     0.01,  "inr_max" : 65536.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "Monopixel": {
         "size_min":     1,   "size_max": 1,
         "rad_min" :     0.0, "rad_max" : 65536.0,
         "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "Bipixel": {
         "size_min":     2,   "size_max": 2,
         "rad_min" :     0.0, "rad_max" : 65536.0,
         "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         }, 
     "TripixelGamma": {
         "size_min":     3,   "size_max": 3,
         "rad_min" :     0.0, "rad_max" :     0.75,
         "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "TetrapixelGamma": {
         "size_min":     4,   "size_max": 4,
         "rad_min" :     0.0, "rad_max" :     0.71,
         "rho_min" :     0.0, "rho_max" : 65536.0,
-        "lin_min" :     0.0, "lin_max" : 65536.0
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "TripixelBeta": {
         "size_min":     3,    "size_max": 3,
         "rad_min" :     0.75, "rad_max" : 65536.0,
         "rho_min" :     0.0,  "rho_max" : 65536.0,
-        "lin_min" :     0.0,  "lin_max" : 65536.0
+        "lin_min" :     0.0,  "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         },
     "TetrapixelBeta": {
         "size_min":     4,    "size_max": 4,
         "rad_min" :     0.71, "rad_max" : 65536.0,
         "rho_min" :     0.0,  "rho_max" : 65536.0,
-        "lin_min" :     0.0,  "lin_max" : 65536.0
+        "lin_min" :     0.0,  "lin_max" : 65536.0,
+        "inr_min" :     0.0,  "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
         } 
     }
 ]

@@ -114,6 +114,15 @@ if __name__=="__main__":
     ## Dictionary of the cluster linearity { id:linearity }.
     klins = {}
 
+    ## Dictionary of the clusters' fraction of inner pixels { id:innerfrac }.
+    kinners = {}
+
+    ## Dictionary of the cluster total counts { id:totalcounts }.
+    kttcs = {}
+
+    ## Dictionary of the clusters' max. count value { id:maxcounts }.
+    kmxcs = {}
+
     ## List of the cluster types.
     alltypes = ["None", "Edge"]
 
@@ -125,10 +134,14 @@ if __name__=="__main__":
     # Loop over the klusters.
     for k in kd:
 
+        # Add to the cluster property dictionaries.
         ksizes[k["id"]] = k["size"]
         krads[k["id"]]  = k["radius_uw"]
         kdens[k["id"]]  = k["density_uw"]
         klins[k["id"]]  = k["lin_linearity"]
+        kinners[k["id"]] = k["innerfrac"]
+        kttcs[k["id"]] = k["totalcounts"]
+        kmxcs[k["id"]] = k["maxcounts"]
 
         lg.info(" *")
         lg.info(" * Cluster ID: '%s'." % (k["id"]))
@@ -160,16 +173,29 @@ if __name__=="__main__":
                 lin_min = vals["lin_min"]
                 lin_max = vals["lin_max"]
 
+                inr_min = vals["inr_min"]
+                inr_max = vals["inr_max"]
+
+                ttc_min = vals["ttc_min"]
+                ttc_max = vals["ttc_max"]
+
+                mxc_min = vals["mxc_min"]
+                mxc_max = vals["mxc_max"]
+
                 #
                 # If it isn't, check if it matches the current type.
                 if (k["size"] >= size_min) and (k["size"] <= size_max) and \
                    (k["radius_uw"] >= rad_min) and (k["radius_uw"] <= rad_max) and \
                    (k["lin_linearity"] >= lin_min) and (k["lin_linearity"] <= lin_max) and \
-                   (k["density_uw"] >= rho_min) and (k["density_uw"] <= rho_max):
+                   (k["density_uw"] >= rho_min) and (k["density_uw"] <= rho_max) and \
+                   (k["innerfrac"] >= inr_min) and (k["innerfrac"] <= inr_max) and \
+                   (k["totalcounts"] >= ttc_min) and (k["totalcounts"] <= ttc_max) and \
+                   (k["maxcounts"] >= mxc_min) and (k["maxcounts"] <= mxc_max):
                     lg.info(" *==> Cluster ID '%s' is of type: '%s'." % (k["id"], typename))
                     lg.info(" *")
 
                     if k["id"] in ks.keys():
+                        print("* Conflicting types: '%s' vs. '%s'." % (typename, ks[k["id"]]))
                         raise Exception("* ERROR! Cluster already sorted - your types.json contains overlapping definitions.")
 
                     # Assign the cluster to the current type.
@@ -237,9 +263,13 @@ if __name__=="__main__":
         for kl, ktype in ks.iteritems():
             if ktype == typename:
                 kpg += "      <tr>\n"
-                kpg += "      <td><img src=\"../clusters/%s.png\" style=\"width:256px\"/></td>\n" % (kl)
-                kpg += "      <td>ID:<br />Size:<br />Radius:<br />Density:<br />Linearity:<br /></td>\n"
-                kpg += "      <td>%s<br />%d<br />%8.2f<br />%8.2f<br />%8.2f<br /></td>\n" % (kl,ksizes[kl],krads[kl],kdens[kl],klins[kl])
+                kpg += "      <td>"
+                kpg += "<a href=\"../clusters/%s.png\" target=\"_blank\">" % (kl)
+                kpg += "<img src=\"../clusters/%s.png\" style=\"width:256px\"/>" % (kl)
+                kpg += "<a/></td>\n"
+                kpg += "      <td>ID:<br />Size:<br />Radius:<br />Density:<br />Linearity:<br />Inner frac.:<br />Total counts:<br />Max. counts:</td>\n"
+                kpg += "      <td>%s<br />%d<br />%8.2f<br />%8.2f<br />%8.2f<br />" % (kl,ksizes[kl],krads[kl],kdens[kl],klins[kl])
+                kpg += "%f<br />%d<br />%d</td>\n" % (kinners[kl], kttcs[kl], kmxcs[kl])
                 kpg += "      </tr>\n"
         kpg += "    </table>\n"
 
