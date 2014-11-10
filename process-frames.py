@@ -51,6 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("inputPath",       help="Path to the input dataset.")
     parser.add_argument("outputPath",      help="The path for the output files.")
     parser.add_argument("-v", "--verbose", help="Increase output verbosity", action="store_true")
+    parser.add_argument("-g", "--gamma",   help="Process gamma candidates too", action="store_true")
     args = parser.parse_args()
 
     ## The path to the data file.
@@ -71,6 +72,10 @@ if __name__ == "__main__":
     print("*")
     print("* Input path          : '%s'" % (datapath))
     print("* Output path         : '%s'" % (outputpath))
+    if args.gamma:
+        print("* Gamma candidate clusters WILL be processed.")
+    else:
+        print("* Gamma candidate clusters WILL NOT be processed.")
     print("*")
 
 
@@ -173,6 +178,9 @@ if __name__ == "__main__":
 
         # Loop over the clusters.
         for i, kl in enumerate(f.getKlusterFinder().getListOfKlusters()):
+
+            if not args.gamma and kl.isGamma():
+                continue
 
             ## The kluster ID.
             klusterid = bn + "_k%05d" % (i)
