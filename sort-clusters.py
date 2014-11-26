@@ -131,6 +131,9 @@ if __name__=="__main__":
         for typename, vals in t.iteritems():
             alltypes.append(typename)
 
+    ## The number of edge clusters.
+    n_edge_klusters = 0
+
     # Loop over the klusters.
     for k in kd:
 
@@ -155,6 +158,7 @@ if __name__=="__main__":
         # Check if the cluster is on the edge of the frame.
         if k["xmin"] <= 0.1 or k["xmax"] >= 254.9 or k["ymin"] <= 0.1 or k["ymax"] >= 254.9:
             ks[k["id"]] = "Edge"
+            n_edge_klusters += 1
             continue
 
         # Loop over the types and check for a match.
@@ -239,15 +243,16 @@ if __name__=="__main__":
     pg += "    <h2>Cluster types</h2>\n"
 
     pg += "    <p>\n"
-    pg += "      <ul>\n"
+
+    # Make this into a table.
+    pg += "      <table>\n"
+    pg += "        <tr><th>Type</th><th colspan=\"2\">Clusters</th><th>%</th></tr>\n"
 
     # Loop over the cluster types.
     for typename in sorted(alltypes):
 
         ## The cluster type page name.
         kpgname = "%s/%s.html" % (sortedpath, typename)
-
-        pg += "        <li><a href=\"%s.html\">%s</a></li>\n" % (typename, typename)
 
         kpg = ""
         kpg += "<!DOCTYPE html>\n"
@@ -260,6 +265,10 @@ if __name__=="__main__":
         kpg += "    <h1>CERN@school: '%s' Clusters</h1>\n" % (typename)
         kpg += "    <p>Back to the <a href=\"index.html\">cluster types</a> page.</p>\n"
         kpg += "    <table>\n"
+
+        ## The number of clusters of this type.
+        numtype = 0
+
         for kl, ktype in ks.iteritems():
             if ktype == typename:
                 kpg += "      <tr>\n"
@@ -271,6 +280,9 @@ if __name__=="__main__":
                 kpg += "      <td>%s<br />%d<br />%8.2f<br />%8.2f<br />%8.2f<br />" % (kl,ksizes[kl],krads[kl],kdens[kl],klins[kl])
                 kpg += "%f<br />%d<br />%d</td>\n" % (kinners[kl], kttcs[kl], kmxcs[kl])
                 kpg += "      </tr>\n"
+                #
+                numtype += 1
+
         kpg += "    </table>\n"
 
         kpg += "      </ul>\n"
@@ -282,6 +294,24 @@ if __name__=="__main__":
         kf.write(kpg)
         kf.close()
 
+        # Write the entry on the sorting homepage table.
+        pg += "          <tr>"
+        pg += "<td><a href=\"%s.html\">%s</a></td>" % (typename, typename)
+        pg += "<td style=\"text-align:right\">%d</td>" % (numtype)
+        pg += "<td>"
+        if typename != "Edge":
+            perc = 100.0 * (numtype) / (len(ks) - n_edge_klusters)
+            for i in range(int(perc)):
+                pg += "|"
+            pg += "</td>"
+            pg += "<td style=\"text-align:right\">% 4.1f</td>" % (perc)
+        else:
+            pg += "<td></td><td></td>\n"
+        pg += "</tr>\n"
+
+
+    pg += "      </table>\n"
+    pg += "    </p>\n"
     pg += "  </body>\n"
     pg += "</html>"
 

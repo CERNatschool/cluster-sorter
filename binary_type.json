@@ -1,0 +1,13 @@
+[
+    {
+    "MyType": {
+        "size_min":   100,    "size_max": 65536,
+        "rad_min" :     0.0,  "rad_max" :   256.0,
+        "rho_min" :     0.0, "rho_max" : 65536.0,
+        "lin_min" :     0.0, "lin_max" : 65536.0,
+        "inr_min" :     0.0, "inr_max" :     1.0,
+        "ttc_min" :     0,    "ttc_max" : 9999999,
+        "mxc_min" :     0,    "mxc_max" : 9999999
+        }
+    }
+]
