@@ -4,9 +4,7 @@
 
  CERN@school - Sorting Clusters
 
- See the README.md and GitHub wiki for more information.
-
- http://cernatschool.web.cern.ch
+ See the README.md for more information.
 
 """
 
@@ -31,9 +29,6 @@ import pylab as plt
 #rc('font',**{'family':'serif','serif':['Computer Modern']})
 #rc('text', usetex=True)
 
-# Get the path of the current directory
-#path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-
 #
 # The main program.
 #
@@ -56,6 +51,9 @@ if __name__=="__main__":
 
     ## The path to the particle type JSON.
     typepath = args.typePath
+    #
+    if not os.path.exists(typepath):
+        raise IOError("* ERROR! Cluster type JSON file not found at '%s'!" % (typepath))
 
     ## The output path.
     outputpath = args.outputPath
@@ -75,23 +73,24 @@ if __name__=="__main__":
     print("* Output file         : '%s'" % (outputpath))
     print("*")
 
-    ## The cluster properties JSON file - FIXME: check it exists...
-    kf = open(datapath + "/klusters.json", "r")
+    ## The path to the cluster properties JSON file.
+    kluster_properties_path = os.path.join(datapath, "klusters.json")
     #
-    kd = json.load(kf)
-    kf.close()
-
-    ## The cluster types specification JSON file - FIXME: check it exists...
-    tf = open(typepath, "r")
+    if not os.path.exists(kluster_properties_path):
+        raise IOError("* ERROR! Can't find cluster properties file at '%s'!" % (kluster_properties_path))
     #
-    types = json.load(tf)
-    tf.close()
+    with open(kluster_properties_path, "r") as kf:
+        kd = json.load(kf)
 
+    ## The path to the cluster types specification JSON file.
+
+    with open(typepath, "r") as tf:
+        types = json.load(tf)
 
     # Create the sorting directories.
 
     ## The path to the sorted cluster directory.
-    sortedpath = "%s/sorted" % (outputpath)
+    sortedpath = os.path.join(outputpath, "sorted")
     #
     if os.path.isdir(sortedpath):
         rmtree(sortedpath)
@@ -220,7 +219,7 @@ if __name__=="__main__":
     print("* Sorted %d clusters!" % (len(ks)))
 
     ## Path to the sorting HTML page.
-    homepagename = sortedpath + "/index.html"
+    homepagename = os.path.join(sortedpath, "index.html")
 
     ## The index page for the sorted clusters.
     pg = ""

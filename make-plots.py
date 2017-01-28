@@ -5,9 +5,7 @@
 
  CERN@school - Make Plots
 
- See the README.md file and the GitHub wiki for more information.
-
- http://cernatschool.web.cern.ch
+ See the README.md file for more information.
 
 """
 
@@ -74,7 +72,7 @@ if __name__ == "__main__":
     # Create the subdirectories.
 
     ## The path to the frame plots.
-    fppath = outputpath + "/frameplots/"
+    fppath = os.path.join(outputpath, "frameplots")
     #
     if os.path.isdir(fppath):
         rmtree(fppath)
@@ -84,7 +82,7 @@ if __name__ == "__main__":
     lg.info("")
 
     ## The path to the cluster plots.
-    kppath = outputpath + "/clusterplots/"
+    kppath = os.path.join(outputpath, "clusterplots")
     #
     if os.path.isdir(kppath):
         rmtree(kppath)
@@ -93,18 +91,23 @@ if __name__ == "__main__":
     lg.info(" * Creating directory '%s'..." % (kppath))
     lg.info("")
 
-    ## The frame properties JSON file - FIXME: check it exists...
-    ff = open(datapath + "/frames.json", "r")
+    ## The path to the frame properties JSON file.
+    frame_properties_path = os.path.join(datapath, "frames.json")
     #
-    fd = json.load(ff)
-    ff.close()
-
-    ## The cluster properties JSON file - FIXME: check it exists...
-    kf = open(datapath + "/klusters.json", "r")
+    if not os.path.exists(frame_properties_path):
+        raise IOError("* ERROR! Frame properties JSON not found at '%s'!" % (frame_properties_path))
     #
-    kd = json.load(kf)
-    kf.close()
+    with open(frame_properties_path, "r") as ff:
+        fd = json.load(ff)
 
+    ## The path to the cluster properties JSON file.
+    kluster_properties_path = os.path.join(datapath, "klusters.json")
+    #
+    if not os.path.exists(kluster_properties_path):
+        raise IOError("* ERROR! Cluster properties JSON not found at '%s'!" % (kluster_properties_path))
+    #
+    with open(kluster_properties_path, "r") as kf:
+        kd = json.load(kf)
 
     # The frames
     #------------
@@ -169,8 +172,11 @@ if __name__ == "__main__":
     fp += "  </body>\n"
     fp += "</html>"
 
+    ## The output path for the frame property index page.
+    frame_property_index_output_path = os.path.join(fppath, "index.html")
+    #
     # Write out the frame property index page.
-    with open("%s/index.html" % (fppath), "w") as framepage:
+    with open(frame_property_index_output_path, "w") as framepage:
         framepage.write(fp)
 
 
@@ -286,13 +292,18 @@ if __name__ == "__main__":
     kp += "  </body>\n"
     kp += "</html>"
 
+    ## The output path for the cluster property index page.
+    kluster_property_index_output_path = os.path.join(kppath, "index.html")
+    #
     # Write out the cluster property index page.
-    with open("%s/index.html" % (kppath), "w") as clusterpage:
+    with open(kluster_property_index_output_path, "w") as clusterpage:
         clusterpage.write(kp)
 
     # Now you can view the "index.html" files to see the results!
     print("*")
     print("* Plotting complete.")
-    print("* View your results by opening '%s' or '%s' in a browser, e.g." % (fppath, kppath))
+    print("* View your results by opening:")
+    print("* '%s' or '%s'" % (frame_property_index_output_path, kluster_property_index_output_path))
+    print("* in a browser, e.g.")
     print("* $ firefox %s/index.html &" % (fppath))
     print("* $ firefox %s/index.html &" % (kppath))
